@@ -345,6 +345,89 @@
             "isProps": false,
             "parentSheetGUID": "737cea69-f83b-4f4d-82f6-f0aeb045378f",
             "columnGUID": "8855bac8-0ad8-415d-b27a-03f6ef9f72ec"
+        },
+        {
+            "name": "creatures",
+            "description": "Creatures that go thru the player's maze",
+            "displayColumn": "id",
+            "guid": "6bff5a18-e975-494b-80b9-08c67057b7af",
+            "columns": [
+                {
+                    "typeStr": "float",
+                    "guid": "0a7b1d5e-5703-4c1c-8afb-92bd779a7d35",
+                    "description": "How much damage can be taken before death",
+                    "name": "health",
+                    "min": 1,
+                    "max": 100000,
+                    "defaultValue": 2,
+                    "iconName": "newFloat",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "float",
+                        "max": "float",
+                        "defaultValue": "float"
+                    }
+                },
+                {
+                    "typeStr": "float",
+                    "guid": "14e47164-5128-4866-ade1-d33e20b4e799",
+                    "description": "The damage-reducing armor of the creature",
+                    "name": "armor",
+                    "min": 0,
+                    "max": 100000,
+                    "defaultValue": 0,
+                    "iconName": "newFloat",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "float",
+                        "max": "float",
+                        "defaultValue": "float"
+                    }
+                },
+                {
+                    "typeStr": "float",
+                    "guid": "9ec4f8e5-046c-42ed-ad27-2f7f2b51249c",
+                    "description": "How quickly the creature moves",
+                    "name": "move-speed",
+                    "min": 1,
+                    "max": 100000,
+                    "defaultValue": 1,
+                    "iconName": "newFloat",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "float",
+                        "max": "float",
+                        "defaultValue": "float"
+                    }
+                }
+            ],
+            "lines": [
+                {
+                    "guid": "8bce53d6-a9c6-4710-83a8-d234b5e20275",
+                    "id": "orc",
+                    "health": 2,
+                    "armor": 0,
+                    "move-speed": 1
+                }
+            ],
+            "hidden": false,
+            "isProps": false,
+            "configurable": {
+                "name": "text",
+                "description": "text",
+                "displayColumn": "columnSelect@name",
+                "columnSelect@name@displayColumn": {
+                    "allowedTypes": [
+                        "int",
+                        "float",
+                        "text",
+                        "longtext"
+                    ]
+                }
+            }
         }
     ]
 }

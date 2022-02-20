@@ -34,6 +34,7 @@ CommandQueue="*res://autoloads/CommandQueue.gd"
 ClientConstants="*res://constants/ClientConstants.gd"
 GameConstants="*res://constants/GameConstants.gd"
 TowerController="*res://scripts/controllers/TowerController.gd"
+SpawnController="*res://scripts/controllers/SpawnController.gd"
 
 [display]
 

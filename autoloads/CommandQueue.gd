@@ -1,7 +1,8 @@
 extends Node
 
 enum COMMAND_TYPES {
-  BUILD_TOWER
+  BUILD_TOWER,
+  SPAWN_CREATURE
 }
 
 signal command_do(command_data:Dictionary)

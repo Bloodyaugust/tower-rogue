@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4riq2dxsg7e7"]
+[gd_scene load_steps=4 format=3 uid="uid://b4riq2dxsg7e7"]
 
 [ext_resource type="PackedScene" uid="uid://ce0popxtac3k3" path="res://views/Towers.tscn" id="1_xcx6m"]
 [ext_resource type="PackedScene" uid="uid://30eceicf2nlo" path="res://views/Status.tscn" id="2_gumwp"]
+[ext_resource type="PackedScene" uid="uid://731m5qelb7pk" path="res://actors/SpawnPoint.tscn" id="3_hgydk"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -10,3 +11,6 @@
 [node name="Towers" parent="UIRoot" instance=ExtResource( "1_xcx6m" )]
 
 [node name="Status" parent="UIRoot" instance=ExtResource( "2_gumwp" )]
+
+[node name="SpawnPoint" parent="." instance=ExtResource( "3_hgydk" )]
+position = Vector2(397, 304)
