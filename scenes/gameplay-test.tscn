@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4riq2dxsg7e7"]
 
 [ext_resource type="PackedScene" uid="uid://ce0popxtac3k3" path="res://views/Towers.tscn" id="1_xcx6m"]
-[ext_resource type="Theme" uid="uid://b15qjmc8yvspv" path="res://resources/themes/kenney/kenney.tres" id="2_gakyl"]
+[ext_resource type="PackedScene" uid="uid://30eceicf2nlo" path="res://views/Status.tscn" id="2_gumwp"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -9,38 +9,4 @@
 
 [node name="Towers" parent="UIRoot" instance=ExtResource( "1_xcx6m" )]
 
-[node name="Status" type="MarginContainer" parent="UIRoot"]
-offset_right = 40.0
-offset_bottom = 40.0
-theme = ExtResource( "2_gakyl" )
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UIRoot/Status"]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 118.0
-offset_bottom = 82.0
-theme_override_constants/separation = 0
-
-[node name="Money" type="Label" parent="UIRoot/Status/VBoxContainer"]
-offset_right = 108.0
-offset_bottom = 36.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 24
-text = "Money: 000000"
-
-[node name="Wave" type="Label" parent="UIRoot/Status/VBoxContainer"]
-offset_top = 36.0
-offset_right = 108.0
-offset_bottom = 72.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 24
-text = "Wave: 1"
+[node name="Status" parent="UIRoot" instance=ExtResource( "2_gumwp" )]
