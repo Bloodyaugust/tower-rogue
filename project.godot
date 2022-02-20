@@ -30,6 +30,7 @@ config/features=PackedStringArray("4.0")
 Depot="*res://autoloads/Depot.gd"
 Store="*res://autoloads/Store.gd"
 GDUtil="*res://lib/util/GDUtil.gd"
+CommandQueue="*res://autoloads/CommandQueue.gd"
 ClientConstants="*res://constants/ClientConstants.gd"
 GameConstants="*res://constants/GameConstants.gd"
 TowerController="*res://scripts/controllers/TowerController.gd"

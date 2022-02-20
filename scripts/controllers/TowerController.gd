@@ -22,6 +22,18 @@ func _initialize() -> void:
   Store.set_state("tower_selection", null)
   Store.set_state("tower_building_selection", null)
 
+func _on_command_do(command_data:Dictionary) -> void:
+  match command_data.type:
+    CommandQueue.COMMAND_TYPES.BUILD_TOWER:
+      Store.set_state("money", Store.state.money - command_data.tower.data.cost)
+      _tile_map.add_child(command_data.tower)
+
+func _on_command_undo(command_data:Dictionary) -> void:
+  match command_data.type:
+    CommandQueue.COMMAND_TYPES.BUILD_TOWER:
+      Store.set_state("money", Store.state.money + command_data.tower.data.cost)
+      command_data.tower.queue_free()
+
 func _on_store_state_changed(state_key:String, substate) -> void:
   match state_key:
     "tower_selection":
@@ -47,6 +59,8 @@ func _process(delta):
 
 func _ready():
   Store.state_changed.connect(_on_store_state_changed)
+  CommandQueue.command_do.connect(_on_command_do)
+  CommandQueue.command_undo.connect(_on_command_undo)
 
   call_deferred("_initialize")
 
@@ -68,5 +82,7 @@ func _unhandled_input(event):
         _new_tower.global_position = GDUtil.tilemap_global_cell_position(_tile_map, get_global_mouse_position())
         _new_tower.data = Store.state.tower_building_selection
 
-        _tile_map.add_child(_new_tower)
-        print("made building")
+        CommandQueue.add_command({
+          "type": CommandQueue.COMMAND_TYPES.BUILD_TOWER,
+          "tower": _new_tower
+        })
