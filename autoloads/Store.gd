@@ -7,7 +7,7 @@ var state: Dictionary = {
   "client_view": "",
   "game": "",
   "tower_selection": null,
-  "tower_build_selection": null,
+  "tower_building_selection": null,
   "money": 0,
   "wave": 0
  }
@@ -16,7 +16,7 @@ func start_game() -> void:
   set_state("client_view", ClientConstants.CLIENT_VIEW_NONE)
   set_state("game", GameConstants.GAME_STARTING)
   set_state("tower_selection", null)
-  set_state("tower_build_selection", null)
+  set_state("tower_building_selection", null)
   set_state("money", 100)
   set_state("wave", 0)
 
@@ -33,7 +33,7 @@ func _initialize():
   set_state("client_view", ClientConstants.CLIENT_VIEW_SPLASH)
   set_state("game", GameConstants.GAME_OVER)
   set_state("tower_selection", null)
-  set_state("tower_build_selection", null)
+  set_state("tower_building_selection", null)
   set_state("money", 100)
   set_state("wave", 0)
 
