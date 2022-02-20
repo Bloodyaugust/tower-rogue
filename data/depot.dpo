@@ -133,6 +133,23 @@
                         "name": "text",
                         "description": "text"
                     }
+                },
+                {
+                    "typeStr": "float",
+                    "guid": "5cc04aa8-54b8-4c5a-8b34-5b25e5e21540",
+                    "description": "Distance at which attacks can be made and auras apply",
+                    "name": "range",
+                    "min": 1,
+                    "max": 100000,
+                    "defaultValue": 100,
+                    "iconName": "newFloat",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "float",
+                        "max": "float",
+                        "defaultValue": "float"
+                    }
                 }
             ],
             "lines": [
@@ -152,7 +169,8 @@
                     ],
                     "crit-chance": 0.1,
                     "crit-multiplier": 1.1,
-                    "status-effects": []
+                    "status-effects": [],
+                    "range": 100
                 },
                 {
                     "guid": "d5d2dfb0-a7ef-4b0e-92fc-f4f41a169c79",
@@ -164,7 +182,8 @@
                     "upgrades": [],
                     "crit-chance": 0.2,
                     "crit-multiplier": 1.5,
-                    "status-effects": []
+                    "status-effects": [],
+                    "range": 100
                 },
                 {
                     "guid": "06545644-ed75-4d06-9d3a-363e2ddbd6f2",
@@ -182,7 +201,8 @@
                             "id": "0",
                             "status-effect": "d8a1a3fd-242c-49d0-8aa1-65ae4bd08373"
                         }
-                    ]
+                    ],
+                    "range": 100
                 }
             ],
             "hidden": false,
