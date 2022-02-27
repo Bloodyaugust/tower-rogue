@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://3n3xbfd35kde"]
+[gd_scene load_steps=7 format=3 uid="uid://3n3xbfd35kde"]
 
 [ext_resource type="Texture2D" uid="uid://bv23uxf7pjc4o" path="res://sprites/landscape_22.png" id="1_ff0yh"]
 [ext_resource type="Texture2D" uid="uid://bobve10we1p8x" path="res://sprites/landscape_17.png" id="2_lnutw"]
@@ -21,6 +21,11 @@ tile_size = Vector2i(128, 64)
 sources/1 = SubResource( "TileSetAtlasSource_ar301" )
 sources/2 = SubResource( "TileSetAtlasSource_cev4i" )
 
+[sub_resource type="Curve2D" id="Curve2D_2ghqn"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -384, 0, -54.0805, -0.851662, 54.0805, 0.851662, 0, -194, -0.851662, -22.569, 0.851662, 22.569, 129, -129, 0.425831, -25.124, -0.425831, 25.124, 0, -63, -38.3248, 0, 38.3248, 0, 128, 1, -37.0473, -0.851662, 37.0473, 0.851662, 260, -67, 0, -20.0141, 0, 20.0141, 389, 0, 34.9181, 0.425831, -34.9181, -0.425831, 129, 130, 40.0281, 0.425831, -40.0281, -0.425831, -130, -3, 0, 0, 0, 0, -260, 65)
+}
+
 [node name="TileMap" type="TileMap"]
 y_sort_enabled = true
 tile_set = SubResource( "TileSet_5go8p" )
@@ -36,6 +41,11 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(-4, 2, 0, -131075, 2, 0, -65539, 2, 0, 131069, 2, 0, -262146, 2, 0, -196610, 2, 0, -2, 2, 0, 65534, 2, 0, -393217, 2, 0, -327681, 2, 0, -131073, 2, 0, 65535, 2, 0, 131071, 2, 0, -393216, 2, 0, -327680, 2, 0, -262144, 2, 0, -131072, 2, 0, -65536, 2, 0, 131072, 2, 0, 196608, 2, 0, -196607, 2, 0, -131071, 2, 0, 65537, 2, 0, 131073, 2, 0, -131070, 2, 0, -65534, 2, 0, 2, 2, 0)
 
-[node name="Path" type="Line2D" parent="." groups=["paths"]]
-visible = false
-points = PackedVector2Array(-388, -1, -1, -195, 131, -127, -1, -63, 130, -1, 259, -66, 394, 1, 130, 131, -125, -2, -257, 63)
+[node name="Path2D" type="Path2D" parent="."]
+top_level = true
+curve = SubResource( "Curve2D_2ghqn" )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" groups=["paths"]]
+position = Vector2(-384, 0)
+rotates = false
+loop = false

@@ -4,14 +4,14 @@ const _hit_effect_scene:PackedScene = preload("res://doodads/HitEffect.tscn")
 
 var targetable:bool = true
 var data:Dictionary
-var path:Line2D
+var path:PathFollow2D
 
 @onready var _name:Label = find_node("Name")
 @onready var _animation_player = find_node("AnimationPlayer")
 
 @onready var _health:float = data.health
 
-var _path_index:int = 1
+var _distance:float = 0.0
 
 func _die_complete() -> void:
   queue_free()
@@ -34,16 +34,13 @@ func _on_command_do(command_data:Dictionary) -> void:
 
 func _process(delta):
   if targetable:
-    var _target_position:Vector2 = path.get_point_position(_path_index)
+    _distance += delta * data["move-speed"]
+    path.offset = _distance
+    global_position = path.global_position
 
-    global_position = global_position.move_toward(_target_position, delta * data["move-speed"])
-
-    if global_position.distance_to(_target_position) <= 0.01:
-      _path_index += 1
-
-      if _path_index >= path.get_point_count():
-        _animation_player.play("die")
-        targetable = false
+    if path.unit_offset == 1.0:
+      _animation_player.play("die")
+      targetable = false
 
 func _ready():
   CommandQueue.command_do.connect(_on_command_do)
