@@ -1,23 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyne3sk6a7uh8"]
-
-[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_jhsk2"]
-resource_local_to_scene = true
-particle_flag_align_y = true
-particle_flag_disable_z = true
-spread = 180.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 180.0
-initial_velocity_max = 250.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-damping_min = 200.0
-damping_max = 250.0
-scale_min = 5.0
-scale_max = 10.0
+[gd_scene load_steps=27 format=3 uid="uid://dyne3sk6a7uh8"]
 
 [sub_resource type="Animation" id="Animation_13oe5"]
 resource_name = "one_shot"
-length = 0.4
+length = 0.3
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -25,7 +10,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.25),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -45,19 +30,412 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[node name="HitEffect" type="Node2D"]
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_irjho"]
+input_name = "active"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 15
-lifetime = 0.4
-one_shot = true
-explosiveness = 1.0
-randomness = 0.25
-collision_base_size = 0.0
-process_material = SubResource( "ParticlesMaterial_jhsk2" )
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_0ibuy"]
+input_name = "custom"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_blmcd"]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeParticleAccelerator" id="VisualShaderNodeParticleAccelerator_4cesq"]
+default_input_values = [0, Vector3(50, 50, 0), 1, 0.25, 2, Vector3(0, 0, 0)]
+mode = 1
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_cbl3r"]
+size = Vector2(363, 245)
+expression = "output0 = lerp(0, 1, input0 / input1);"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_7njas"]
+input_name = "lifetime"
+
+[sub_resource type="Curve" id="Curve_sc6ns"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.257692, 0.181818), 0.0, 0.0, 0, 0, Vector2(1, 1), -0.535163, 0.0, 0, 0]
+
+[sub_resource type="CurveTexture" id="CurveTexture_gn2ul"]
+curve = SubResource( "Curve_sc6ns" )
+
+[sub_resource type="VisualShaderNodeCurveTexture" id="VisualShaderNodeCurveTexture_qi86a"]
+output_port_for_preview = 0
+texture = SubResource( "CurveTexture_gn2ul" )
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_d48se"]
+constant = 500.0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_jgf48"]
+input_name = "custom"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_s0vjl"]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_cu21k"]
+output_port_for_preview = 0
+operator = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_2ho5j"]
+input_name = "delta"
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_808xw"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_dihvt"]
+input_name = "active"
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_j2fb5"]
+constant = 1.0
+
+[sub_resource type="VisualShaderNodeParticleRandomness" id="VisualShaderNodeParticleRandomness_oximc"]
+default_input_values = [0, -50.0, 1, -25.0]
+
+[sub_resource type="VisualShaderNodeParticleSphereEmitter" id="VisualShaderNodeParticleSphereEmitter_jkanl"]
+default_input_values = [0, 1.0, 1, 0.0]
+mode_2d = true
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id="VisualShaderNodeGlobalExpression_yk0x8"]
+size = Vector2(504, 297)
+expression = "float lerp (float from, float to, float t) {
+  return from + (to - from) * t;
+}
+"
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_ipjv4"]
+constant = 15.0
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_i8ei4"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ebrya"]
+input_name = "lifetime"
+
+[sub_resource type="VisualShader" id="VisualShader_kbgxb"]
+code = "shader_type particles;
+uniform sampler2D curve_process_7;
+
+
+float __rand_from_seed(inout uint seed) {
+	int k;
+	int s = int(seed);
+	if (s == 0)
+	s = 305420679;
+	k = s / 127773;
+	s = 16807 * (s - k * 127773) - 2836 * k;
+	if (s < 0)
+		s += 2147483647;
+	seed = uint(s);
+	return float(seed % uint(65536)) / 65535.0;
+}
+
+float __rand_from_seed_m1_p1(inout uint seed) {
+	return __rand_from_seed(seed) * 2.0 - 1.0;
+}
+
+float __randf_range(inout uint seed, float from, float to) {
+	return __rand_from_seed(seed) * (to - from) + from;
+}
+
+vec2 __randv2_range(inout uint seed, vec2 from, vec2 to) {
+	return vec2(__randf_range(seed, from.x, to.x), __randf_range(seed, from.y, to.y));
+}
+
+vec3 __randv3_range(inout uint seed, vec3 from, vec3 to) {
+	return vec3(__randf_range(seed, from.x, to.x), __randf_range(seed, from.y, to.y), __randf_range(seed, from.z, to.z));
+}
+
+uint __hash(uint x) {
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = (x >> uint(16)) ^ x;
+	return x;
+}
+
+mat3 __build_rotation_mat3(vec3 axis, float angle) {
+	axis = normalize(axis);
+	float s = sin(angle);
+	float c = cos(angle);
+	float oc = 1.0 - c;
+	return mat3(vec3(oc * axis.x * axis.x + c, oc * axis.x * axis.y - axis.z * s, oc * axis.z * axis.x + axis.y * s), vec3(oc * axis.x * axis.y + axis.z * s, oc * axis.y * axis.y + c, oc * axis.y * axis.z - axis.x * s), vec3(oc * axis.z * axis.x - axis.y * s, oc * axis.y * axis.z + axis.x * s, oc * axis.z * axis.z + c));
+}
+
+mat4 __build_rotation_mat4(vec3 axis, float angle) {
+	axis = normalize(axis);
+	float s = sin(angle);
+	float c = cos(angle);
+	float oc = 1.0 - c;
+	return mat4(vec4(oc * axis.x * axis.x + c, oc * axis.x * axis.y - axis.z * s, oc * axis.z * axis.x + axis.y * s, 0), vec4(oc * axis.x * axis.y + axis.z * s, oc * axis.y * axis.y + c, oc * axis.y * axis.z - axis.x * s, 0), vec4(oc * axis.z * axis.x - axis.y * s, oc * axis.y * axis.z + axis.x * s, oc * axis.z * axis.z + c, 0), vec4(0, 0, 0, 1));
+}
+
+vec2 __get_random_unit_vec2(inout uint seed) {
+	return normalize(vec2(__rand_from_seed_m1_p1(seed), __rand_from_seed_m1_p1(seed)));
+}
+
+vec3 __get_random_unit_vec3(inout uint seed) {
+	return normalize(vec3(__rand_from_seed_m1_p1(seed), __rand_from_seed_m1_p1(seed), __rand_from_seed_m1_p1(seed)));
+}
+
+vec2 __get_random_point_in_circle(inout uint seed, float radius, float inner_radius) {
+	return __get_random_unit_vec2(seed) * __randf_range(seed, inner_radius, radius);
+}
+
+vec3 __get_random_point_in_sphere(inout uint seed, float radius, float inner_radius) {
+	return __get_random_unit_vec3(seed) * __randf_range(seed, inner_radius, radius);
+}
+
+// GlobalExpression:0
+	float lerp (float from, float to, float t) {
+	  return from + (to - from) * t;
+	}
+	
+void start() {
+	uint __seed = __hash(NUMBER + uint(1) + RANDOM_SEED);
+	vec3 __diff = TRANSFORM[3].xyz - EMISSION_TRANSFORM[3].xyz;
+	float __radians;
+	vec3 __vec3_buff1;
+	vec3 __vec3_buff2;
+	float __scalar_buff1;
+	float __scalar_buff2;
+	int __scalar_ibuff;
+	vec4 __vec4_buff;
+	vec3 __ndiff = normalize(__diff);
+
+	{
+// Input:2
+		bool n_out2p0 = ACTIVE;
+
+
+// ParticleRandomness:6
+		float n_in6p0 = -50.00000;
+		float n_in6p1 = -25.00000;
+		float n_out6p0 = __randf_range(__seed, n_in6p0, n_in6p1);
+
+
+// FloatConstant:3
+		float n_out3p0 = 1.000000;
+
+
+// SphereEmitter:7
+		float n_in7p0 = 1.00000;
+		float n_in7p1 = 0.00000;
+		vec2 n_out7p0 = __get_random_point_in_circle(__seed, n_in7p0, n_in7p1);
+
+
+// FloatConstant:9
+		float n_out9p0 = 15.000000;
+
+
+// StartOutput:0
+		ACTIVE = n_out2p0;
+		if(ACTIVE) {
+			VELOCITY = vec3(n_out6p0);
+			COLOR.a = n_out3p0;
+			if (RESTART_POSITION) {
+				TRANSFORM = mat4(vec4(1.0, 0.0, 0.0, 0.0), vec4(0.0, 1.0, 0.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0), vec4(vec3(n_out7p0, 0.0), 1.0));
+				if (RESTART_VELOCITY) {
+					VELOCITY = (EMISSION_TRANSFORM * vec4(VELOCITY, 0.0)).xyz;
+				}
+				TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
+			}
+			TRANSFORM *= mat4(vec4(n_out9p0, 0, 0, 0), vec4(0, n_out9p0, 0, 0), vec4(0, 0, n_out9p0, 0), vec4(0, 0, 0, 1));
+		}
+
+
+	}
+	
+	{
+// Input:5
+		float n_out5p0 = LIFETIME;
+
+
+// VectorCompose:3
+		float n_in3p1 = 0.00000;
+		float n_in3p2 = 0.00000;
+		vec3 n_out3p0 = vec3(n_out5p0, n_in3p1, n_in3p2);
+
+
+// CustomStartOutput:0
+		CUSTOM.rgb = n_out3p0;
+
+
+	}
+}
+
+void process() {
+	uint __seed = __hash(NUMBER + uint(1) + RANDOM_SEED);
+	vec3 __vec3_buff1;
+	vec3 __diff = TRANSFORM[3].xyz - EMISSION_TRANSFORM[3].xyz;
+	vec3 __ndiff = normalize(__diff);
+
+	{
+		if (COLLIDED) {
+
+
+		} else {
+
+// Input:10
+			bool n_out10p0 = ACTIVE;
+
+
+// FloatConstant:8
+			float n_out8p0 = 500.000000;
+
+
+// ParticleAccelerator:4
+			float n_in4p1 = 0.25000;
+			vec3 n_in4p2 = vec3(0.00000, 0.00000, 0.00000);
+			vec3 n_out4p0 = length(__diff) > 0.0 ? __ndiff * vec3(n_out8p0) * mix(1.0, __rand_from_seed(__seed), n_in4p1) : vec3(0.0);
+
+
+// Input:2
+			vec3 n_out2p0 = CUSTOM.rgb;
+
+
+// VectorDecompose:3
+			float n_out3p0 = n_out2p0.x;
+			float n_out3p1 = n_out2p0.y;
+			float n_out3p2 = n_out2p0.z;
+
+
+// Input:6
+			float n_out6p0 = LIFETIME;
+
+
+			float n_out5p0;
+// Expression:5
+			n_out5p0 = 0.0;
+			{
+				n_out5p0 = lerp(0, 1, n_out3p0 / n_out6p0);
+			}
+
+
+// CurveTexture:7
+			float n_out7p0 = texture(curve_process_7, vec2(n_out5p0)).r;
+
+
+// ProcessOutput:0
+			ACTIVE = n_out10p0;
+			if(ACTIVE) {
+				VELOCITY = n_out4p0;
+				COLOR.a = n_out7p0;
+			}
+
+
+		}
+	}
+	{
+
+// Input:2
+		vec3 n_out2p0 = CUSTOM.rgb;
+
+
+// VectorDecompose:3
+		float n_out3p0 = n_out2p0.x;
+		float n_out3p1 = n_out2p0.y;
+		float n_out3p2 = n_out2p0.z;
+
+
+// Input:5
+		float n_out5p0 = DELTA;
+
+
+// FloatOp:4
+		float n_out4p0 = n_out3p0 - n_out5p0;
+
+
+// VectorCompose:6
+		vec3 n_out6p0 = vec3(n_out4p0, n_out3p1, n_out3p2);
+
+
+// CustomProcessOutput:0
+		CUSTOM.rgb = n_out6p0;
+
+
+	}
+}
+
+"
+graph_offset = Vector2(768, 553)
+engine_version = {
+"major": 4,
+"minor": 0
+}
+mode = 2
+flags/collision_use_scale = false
+flags/disable_force = false
+flags/disable_velocity = false
+flags/keep_data = false
+nodes/start/0/position = Vector2(380, 180)
+nodes/start/2/node = SubResource( "VisualShaderNodeInput_dihvt" )
+nodes/start/2/position = Vector2(120, 120)
+nodes/start/3/node = SubResource( "VisualShaderNodeFloatConstant_j2fb5" )
+nodes/start/3/position = Vector2(100, 240)
+nodes/start/6/node = SubResource( "VisualShaderNodeParticleRandomness_oximc" )
+nodes/start/6/position = Vector2(-60, 320)
+nodes/start/7/node = SubResource( "VisualShaderNodeParticleSphereEmitter_jkanl" )
+nodes/start/7/position = Vector2(-60, 460)
+nodes/start/8/node = SubResource( "VisualShaderNodeGlobalExpression_yk0x8" )
+nodes/start/8/position = Vector2(-520, -20)
+nodes/start/8/size = Vector2(504, 297)
+nodes/start/8/input_ports = ""
+nodes/start/8/output_ports = ""
+nodes/start/8/expression = "float lerp (float from, float to, float t) {
+  return from + (to - from) * t;
+}
+"
+nodes/start/9/node = SubResource( "VisualShaderNodeFloatConstant_ipjv4" )
+nodes/start/9/position = Vector2(220, 500)
+nodes/start/connections = PackedInt32Array(2, 0, 0, 0, 6, 0, 0, 1, 3, 0, 0, 3, 7, 0, 0, 4, 9, 0, 0, 5)
+nodes/process/0/position = Vector2(1680, 760)
+nodes/process/2/node = SubResource( "VisualShaderNodeInput_0ibuy" )
+nodes/process/2/position = Vector2(80, 640)
+nodes/process/3/node = SubResource( "VisualShaderNodeVectorDecompose_blmcd" )
+nodes/process/3/position = Vector2(360, 620)
+nodes/process/4/node = SubResource( "VisualShaderNodeParticleAccelerator_4cesq" )
+nodes/process/4/position = Vector2(1400, 640)
+nodes/process/5/node = SubResource( "VisualShaderNodeExpression_cbl3r" )
+nodes/process/5/position = Vector2(640, 780)
+nodes/process/5/size = Vector2(363, 245)
+nodes/process/5/input_ports = "0,0,input0;1,0,input1;"
+nodes/process/5/output_ports = "0,0,output0;"
+nodes/process/5/expression = "output0 = lerp(0, 1, input0 / input1);"
+nodes/process/6/node = SubResource( "VisualShaderNodeInput_7njas" )
+nodes/process/6/position = Vector2(360, 920)
+nodes/process/7/node = SubResource( "VisualShaderNodeCurveTexture_qi86a" )
+nodes/process/7/position = Vector2(1180, 800)
+nodes/process/8/node = SubResource( "VisualShaderNodeFloatConstant_d48se" )
+nodes/process/8/position = Vector2(1160, 640)
+nodes/process/10/node = SubResource( "VisualShaderNodeInput_irjho" )
+nodes/process/10/position = Vector2(1575, 584)
+nodes/process/connections = PackedInt32Array(2, 0, 3, 0, 4, 0, 0, 1, 6, 0, 5, 1, 3, 0, 5, 0, 5, 0, 7, 0, 7, 0, 0, 3, 8, 0, 4, 0, 10, 0, 0, 0)
+nodes/start_custom/3/node = SubResource( "VisualShaderNodeVectorCompose_i8ei4" )
+nodes/start_custom/3/position = Vector2(120, 100)
+nodes/start_custom/5/node = SubResource( "VisualShaderNodeInput_ebrya" )
+nodes/start_custom/5/position = Vector2(-120, 200)
+nodes/start_custom/connections = PackedInt32Array(3, 0, 0, 0, 5, 0, 3, 0)
+nodes/process_custom/0/position = Vector2(860, 140)
+nodes/process_custom/2/node = SubResource( "VisualShaderNodeInput_jgf48" )
+nodes/process_custom/2/position = Vector2(-140, 160)
+nodes/process_custom/3/node = SubResource( "VisualShaderNodeVectorDecompose_s0vjl" )
+nodes/process_custom/3/position = Vector2(60, 180)
+nodes/process_custom/4/node = SubResource( "VisualShaderNodeFloatOp_cu21k" )
+nodes/process_custom/4/position = Vector2(400, 120)
+nodes/process_custom/5/node = SubResource( "VisualShaderNodeInput_2ho5j" )
+nodes/process_custom/5/position = Vector2(160, 100)
+nodes/process_custom/6/node = SubResource( "VisualShaderNodeVectorCompose_808xw" )
+nodes/process_custom/6/position = Vector2(600, 140)
+nodes/process_custom/connections = PackedInt32Array(2, 0, 3, 0, 4, 0, 6, 0, 3, 1, 6, 1, 3, 2, 6, 2, 6, 0, 0, 0, 3, 0, 4, 0, 5, 0, 4, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kanpa"]
+resource_local_to_scene = true
+shader = SubResource( "VisualShader_kbgxb" )
+
+[node name="HitEffect" type="Node2D"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/one_shot = SubResource( "Animation_13oe5" )
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 12
+lifetime = 0.3
+explosiveness = 1.0
+fract_delta = false
+process_material = SubResource( "ShaderMaterial_kanpa" )
 
 [connection signal="ready" from="." to="AnimationPlayer" method="play" binds= ["one_shot"]]
