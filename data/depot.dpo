@@ -430,7 +430,7 @@
                     "id": "orc",
                     "health": 2,
                     "armor": 0,
-                    "move-speed": 1
+                    "move-speed": 100
                 }
             ],
             "hidden": false,

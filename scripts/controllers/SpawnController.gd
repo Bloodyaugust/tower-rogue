@@ -7,6 +7,7 @@ func _spawn_creature(creature_data:Dictionary) -> void:
   var _path:Line2D = get_tree().get_nodes_in_group("paths")[0]
       
   _new_creature.data = creature_data
+  _new_creature.path = _path
   _new_creature.global_position = get_tree().get_nodes_in_group("paths")[0].get_point_position(0)
   CommandQueue.add_command({
     "type": CommandQueue.COMMAND_TYPES.SPAWN_CREATURE,
