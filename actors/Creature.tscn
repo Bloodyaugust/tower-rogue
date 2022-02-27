@@ -50,6 +50,8 @@ tracks/1/keys = {
 }
 
 [node name="Creature" type="Node2D" groups=["creatures"]]
+z_index = 2
+z_as_relative = false
 script = ExtResource( "1_u1jd6" )
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

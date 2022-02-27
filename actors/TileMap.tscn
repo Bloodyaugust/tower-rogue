@@ -1,8 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://3n3xbfd35kde"]
+[gd_scene load_steps=6 format=3 uid="uid://3n3xbfd35kde"]
+
+[ext_resource type="Texture2D" uid="uid://bv23uxf7pjc4o" path="res://sprites/landscape_22.png" id="1_ff0yh"]
+[ext_resource type="Texture2D" uid="uid://bobve10we1p8x" path="res://sprites/landscape_17.png" id="2_lnutw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ar301"]
+texture = ExtResource( "1_ff0yh" )
+texture_region_size = Vector2i(132, 115)
+0:0/0 = 0
+0:0/0/texture_offset = Vector2i(0, -23)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cev4i"]
+texture = ExtResource( "2_lnutw" )
+texture_region_size = Vector2i(132, 83)
+0:0/0 = 0
+0:0/0/texture_offset = Vector2i(0, -7)
 
 [sub_resource type="TileSet" id="TileSet_5go8p"]
-tile_size = Vector2i(64, 64)
+tile_shape = 1
+tile_size = Vector2i(128, 64)
+sources/1 = SubResource( "TileSetAtlasSource_ar301" )
+sources/2 = SubResource( "TileSetAtlasSource_cev4i" )
 
 [node name="TileMap" type="TileMap"]
+y_sort_enabled = true
 tile_set = SubResource( "TileSet_5go8p" )
 format = 2
+layer_0/name = "ground"
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(-4, 1, 0, -131075, 1, 0, -65539, 1, 0, -3, 1, 0, 65533, 1, 0, 131069, 1, 0, -262146, 1, 0, -196610, 1, 0, -131074, 1, 0, -65538, 1, 0, -2, 1, 0, 65534, 1, 0, 131070, 1, 0, 196606, 1, 0, 262142, 1, 0, -393217, 1, 0, -327681, 1, 0, -262145, 1, 0, -196609, 1, 0, -131073, 1, 0, -65537, 1, 0, -1, 1, 0, 65535, 1, 0, 131071, 1, 0, 196607, 1, 0, 262143, 1, 0, 327679, 1, 0, 393215, 1, 0, -393216, 1, 0, -327680, 1, 0, -262144, 1, 0, -196608, 1, 0, -131072, 1, 0, -65536, 1, 0, 0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, -262143, 1, 0, -196607, 1, 0, -131071, 1, 0, -65535, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, -131070, 1, 0, -65534, 1, 0, 2, 1, 0)
+layer_1/name = "path"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = true
+layer_1/y_sort_origin = 0
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array(-4, 2, 0, -131075, 2, 0, -65539, 2, 0, 131069, 2, 0, -262146, 2, 0, -196610, 2, 0, -2, 2, 0, 65534, 2, 0, -393217, 2, 0, -327681, 2, 0, -131073, 2, 0, 65535, 2, 0, 131071, 2, 0, -393216, 2, 0, -327680, 2, 0, -262144, 2, 0, -131072, 2, 0, -65536, 2, 0, 131072, 2, 0, 196608, 2, 0, -196607, 2, 0, -131071, 2, 0, 65537, 2, 0, 131073, 2, 0, -131070, 2, 0, -65534, 2, 0, 2, 2, 0)
+
+[node name="Path" type="Line2D" parent="." groups=["paths"]]
+visible = false
+points = PackedVector2Array(-388, -1, -1, -195, 131, -127, -1, -63, 130, -1, 259, -66, 394, 1, 130, 131, -125, -2, -257, 63)

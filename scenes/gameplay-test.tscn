@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ce0popxtac3k3" path="res://views/Towers.tscn" id="1_xcx6m"]
 [ext_resource type="PackedScene" uid="uid://30eceicf2nlo" path="res://views/Status.tscn" id="2_gumwp"]
-[ext_resource type="PackedScene" uid="uid://731m5qelb7pk" path="res://actors/SpawnPoint.tscn" id="3_hgydk"]
+[ext_resource type="PackedScene" path="res://lib/BetterCam.tscn" id="4_wx7y8"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -12,5 +12,4 @@
 
 [node name="Status" parent="UIRoot" instance=ExtResource( "2_gumwp" )]
 
-[node name="SpawnPoint" parent="." instance=ExtResource( "3_hgydk" )]
-position = Vector2(397, 304)
+[node name="BetterCam" parent="." instance=ExtResource( "4_wx7y8" )]

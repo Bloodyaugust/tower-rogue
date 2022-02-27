@@ -8,6 +8,8 @@
 size = Vector2(64, 64)
 
 [node name="Tower" type="Node2D" groups=["towers"]]
+z_index = 1
+z_as_relative = false
 script = ExtResource( "1_scjuu" )
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
