@@ -170,7 +170,7 @@
                     "crit-chance": 0.1,
                     "crit-multiplier": 1.1,
                     "status-effects": [],
-                    "range": 100
+                    "range": 1000
                 },
                 {
                     "guid": "d5d2dfb0-a7ef-4b0e-92fc-f4f41a169c79",

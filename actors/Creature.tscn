@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://mwgjxyyb0aiw"]
 
 [ext_resource type="Script" path="res://actors/Creature.gd" id="1_u1jd6"]
-[ext_resource type="Texture2D" uid="uid://4typrc2p2rra" path="res://icon.png" id="2_6il6j"]
+[ext_resource type="Texture2D" uid="uid://cb57lwryxvnyg" path="res://sprites/creatures/orc.png" id="2_au8m2"]
 [ext_resource type="Theme" uid="uid://b15qjmc8yvspv" path="res://resources/themes/kenney/kenney.tres" id="3_snqr8"]
 
 [sub_resource type="Animation" id="Animation_lgvjp"]
@@ -55,20 +55,22 @@ z_as_relative = false
 script = ExtResource( "1_u1jd6" )
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource( "2_6il6j" )
+position = Vector2(0, -15)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource( "2_au8m2" )
 
 [node name="Name" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -31.0
-offset_top = -30.0
-offset_right = 30.0
-offset_bottom = 31.0
+offset_left = -24.0
+offset_top = -62.0
+offset_right = 25.0
+offset_bottom = -32.0
 grow_horizontal = 2
 theme = ExtResource( "3_snqr8" )
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
 text = "Orc"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -13,3 +13,5 @@
 [node name="Status" parent="UIRoot" instance=ExtResource( "2_gumwp" )]
 
 [node name="BetterCam" parent="." instance=ExtResource( "4_wx7y8" )]
+zoom = Vector2(0.5, 0.5)
+zoom_min = 0.5

@@ -4,7 +4,7 @@ const _creature_scene:PackedScene = preload("res://actors/Creature.tscn")
 
 func _spawn_loop() -> void:
   _spawn_creature(Depot.get_line("creatures", "orc"))
-  await get_tree().create_timer(0.5).timeout
+  await get_tree().create_timer(2.5).timeout
   _spawn_loop()
 
 func _spawn_creature(creature_data:Dictionary) -> void:

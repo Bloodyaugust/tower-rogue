@@ -1,29 +1,29 @@
 [gd_scene load_steps=7 format=3 uid="uid://3n3xbfd35kde"]
 
-[ext_resource type="Texture2D" uid="uid://bv23uxf7pjc4o" path="res://sprites/landscape_22.png" id="1_ff0yh"]
-[ext_resource type="Texture2D" uid="uid://bobve10we1p8x" path="res://sprites/landscape_17.png" id="2_lnutw"]
+[ext_resource type="Texture2D" uid="uid://csssy4reyqoa4" path="res://sprites/tiles/grass.png" id="1_7g25l"]
+[ext_resource type="Texture2D" uid="uid://cam5us5pumgqb" path="res://sprites/tiles/dirt.png" id="2_3s6on"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ar301"]
-texture = ExtResource( "1_ff0yh" )
-texture_region_size = Vector2i(132, 115)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8yod"]
+texture = ExtResource( "2_3s6on" )
+texture_region_size = Vector2i(64, 56)
 0:0/0 = 0
-0:0/0/texture_offset = Vector2i(0, -23)
+0:0/0/texture_offset = Vector2i(0, -9)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cev4i"]
-texture = ExtResource( "2_lnutw" )
-texture_region_size = Vector2i(132, 83)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rsfll"]
+texture = ExtResource( "1_7g25l" )
+texture_region_size = Vector2i(64, 56)
 0:0/0 = 0
-0:0/0/texture_offset = Vector2i(0, -7)
+0:0/0/texture_offset = Vector2i(0, -9)
 
 [sub_resource type="TileSet" id="TileSet_5go8p"]
 tile_shape = 1
-tile_size = Vector2i(128, 64)
-sources/1 = SubResource( "TileSetAtlasSource_ar301" )
-sources/2 = SubResource( "TileSetAtlasSource_cev4i" )
+tile_size = Vector2i(64, 38)
+sources/5 = SubResource( "TileSetAtlasSource_a8yod" )
+sources/6 = SubResource( "TileSetAtlasSource_rsfll" )
 
 [sub_resource type="Curve2D" id="Curve2D_2ghqn"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -384, 0, -54.0805, -0.851662, 54.0805, 0.851662, 0, -194, -0.851662, -22.569, 0.851662, 22.569, 129, -129, 0.425831, -25.124, -0.425831, 25.124, 0, -63, -38.3248, 0, 38.3248, 0, 128, 1, -37.0473, -0.851662, 37.0473, 0.851662, 260, -67, 0, -20.0141, 0, 20.0141, 389, 0, 34.9181, 0.425831, -34.9181, -0.425831, 129, 130, 40.0281, 0.425831, -40.0281, -0.425831, -130, -3, 0, 0, 0, 0, -260, 65)
+"points": PackedVector2Array(0, 0, 0, 0, -128, -77, 0, 0, 0, 0, -35, -20, 0, 0, 0, 0, 29, -55, 0, 0, 0, 0, 98, -20, 0, 0, 0, 0, 33, 20, 0, 0, 0, 0, 64, 36, 0, 0, 0, 0, -1, 78, 0, 0, 0, 0, -62, 38, 0, 0, 0, 0, -129, 77)
 }
 
 [node name="TileMap" type="TileMap"]
@@ -32,20 +32,20 @@ tile_set = SubResource( "TileSet_5go8p" )
 format = 2
 layer_0/name = "ground"
 layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(-4, 1, 0, -131075, 1, 0, -65539, 1, 0, -3, 1, 0, 65533, 1, 0, 131069, 1, 0, -262146, 1, 0, -196610, 1, 0, -131074, 1, 0, -65538, 1, 0, -2, 1, 0, 65534, 1, 0, 131070, 1, 0, 196606, 1, 0, 262142, 1, 0, -393217, 1, 0, -327681, 1, 0, -262145, 1, 0, -196609, 1, 0, -131073, 1, 0, -65537, 1, 0, -1, 1, 0, 65535, 1, 0, 131071, 1, 0, 196607, 1, 0, 262143, 1, 0, 327679, 1, 0, 393215, 1, 0, -393216, 1, 0, -327680, 1, 0, -262144, 1, 0, -196608, 1, 0, -131072, 1, 0, -65536, 1, 0, 0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, -262143, 1, 0, -196607, 1, 0, -131071, 1, 0, -65535, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, -131070, 1, 0, -65534, 1, 0, 2, 1, 0)
+layer_0/tile_data = PackedInt32Array(-262147, 6, 0, -131075, 6, 0, -3, 6, 0, 131069, 6, 0, 262141, 6, 0, -262146, 6, 0, -196610, 6, 0, -131074, 6, 0, -65538, 6, 0, -2, 6, 0, 65534, 6, 0, 131070, 6, 0, 196606, 6, 0, 262142, 6, 0, -262145, 6, 0, -196609, 6, 0, -131073, 6, 0, -65537, 6, 0, -1, 6, 0, 65535, 6, 0, 131071, 6, 0, 196607, 6, 0, 262143, 6, 0, -327680, 6, 0, -262144, 6, 0, -196608, 6, 0, -131072, 6, 0, -65536, 6, 0, 0, 6, 0, 65536, 6, 0, 131072, 6, 0, 196608, 6, 0, -327679, 6, 0, -262143, 6, 0, -196607, 6, 0, -131071, 6, 0, -65535, 6, 0, 1, 6, 0, 65537, 6, 0, 131073, 6, 0, 196609, 6, 0)
 layer_1/name = "path"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 1
-layer_1/tile_data = PackedInt32Array(-4, 2, 0, -131075, 2, 0, -65539, 2, 0, 131069, 2, 0, -262146, 2, 0, -196610, 2, 0, -2, 2, 0, 65534, 2, 0, -393217, 2, 0, -327681, 2, 0, -131073, 2, 0, 65535, 2, 0, 131071, 2, 0, -393216, 2, 0, -327680, 2, 0, -262144, 2, 0, -131072, 2, 0, -65536, 2, 0, 131072, 2, 0, 196608, 2, 0, -196607, 2, 0, -131071, 2, 0, 65537, 2, 0, 131073, 2, 0, -131070, 2, 0, -65534, 2, 0, 2, 2, 0)
+layer_1/tile_data = PackedInt32Array(-262147, 5, 0, 262141, 5, 0, -196610, 5, 0, -131074, 5, 0, 131070, 5, 0, 196606, 5, 0, -131073, 5, 0, -65537, 5, 0, 196607, 5, 0, 262143, 5, 0, -262144, 5, 0, -196608, 5, 0, -65536, 5, 0, 0, 5, 0, 65536, 5, 0, 131072, 5, 0, -131071, 5, 0)
 
 [node name="Path2D" type="Path2D" parent="."]
 top_level = true
 curve = SubResource( "Curve2D_2ghqn" )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" groups=["paths"]]
-position = Vector2(-384, 0)
+position = Vector2(-128, -77)
 rotates = false
 loop = false
