@@ -8,6 +8,7 @@ var path:PathFollow2D
 
 @onready var _name:Label = find_node("Name")
 @onready var _animation_player = find_node("AnimationPlayer")
+@onready var _sprite:Sprite2D = find_node("Sprite2D")
 
 @onready var _health:float = data.health
 
@@ -45,3 +46,9 @@ func _process(delta):
 func _ready():
   CommandQueue.command_do.connect(_on_command_do)
   _name.text = data.id
+  
+  var _directory:Directory = Directory.new()
+  var _texture_path:String = "res://sprites/creatures/" + data.id + ".png"
+  
+  if _directory.file_exists(_texture_path):
+    _sprite.texture = load("res://sprites/creatures/" + data.id + ".png")

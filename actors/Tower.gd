@@ -7,6 +7,7 @@ var data:Dictionary
 
 @onready var _name:Label = find_node("Name")
 @onready var _area2d:Area2D = find_node("Area2D")
+@onready var _sprite:Sprite2D = find_node("Sprite2D")
 
 @onready var _time_to_attack = data["attack-speed"]
 
@@ -57,3 +58,9 @@ func _ready():
   Store.state_changed.connect(_on_store_state_changed)
   (func(parent): parent._area2d.input_event.connect(parent._on_area2d_input_event)).call_deferred(self)
   _name.text = data.id
+  
+  var _directory:Directory = Directory.new()
+  var _texture_path:String = "res://sprites/towers/" + data.id + ".png"
+  
+  if _directory.file_exists(_texture_path):
+    _sprite.texture = load("res://sprites/towers/" + data.id + ".png")
