@@ -25,8 +25,13 @@ func _on_command_do(command_data:Dictionary) -> void:
     CommandQueue.COMMAND_TYPES.SPAWN_CREATURE:
       get_tree().get_root().add_child(command_data.creature)
 
+func _on_store_state_changed(state_key:String, substate) -> void:
+  match state_key:
+    "game":
+      match substate:
+        GameConstants.GAME_STARTING:
+          _spawn_loop()
+
 func _ready():
+  Store.state_changed.connect(_on_store_state_changed)
   CommandQueue.command_do.connect(_on_command_do)
-  
-  await get_tree().create_timer(0.5).timeout
-  _spawn_loop()

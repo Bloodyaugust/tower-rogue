@@ -42,6 +42,7 @@ func _process(delta):
     if path.unit_offset == 1.0:
       _animation_player.play("die")
       targetable = false
+      Store.set_state("health", Store.state.health - 1)
 
 func _ready():
   CommandQueue.command_do.connect(_on_command_do)

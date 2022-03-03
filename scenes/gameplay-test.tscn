@@ -1,10 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4riq2dxsg7e7"]
+[gd_scene load_steps=5 format=3 uid="uid://b4riq2dxsg7e7"]
 
 [ext_resource type="PackedScene" uid="uid://ce0popxtac3k3" path="res://views/Towers.tscn" id="1_xcx6m"]
 [ext_resource type="PackedScene" uid="uid://30eceicf2nlo" path="res://views/Status.tscn" id="2_gumwp"]
 [ext_resource type="PackedScene" path="res://lib/BetterCam.tscn" id="4_wx7y8"]
 
+[sub_resource type="GDScript" id="GDScript_wumu2"]
+script/source = "extends Node2D
+
+func _ready():
+  await get_tree().create_timer(1.0).timeout
+  Store.start_game()
+"
+
 [node name="Node2D" type="Node2D"]
+script = SubResource( "GDScript_wumu2" )
 
 [node name="UIRoot" type="CanvasLayer" parent="."]
 

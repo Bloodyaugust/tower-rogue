@@ -9,16 +9,18 @@ var state: Dictionary = {
   "tower_selection": null,
   "tower_building_selection": null,
   "money": 0,
-  "wave": 0
+  "wave": 0,
+  "health": 0
  }
 
 func start_game() -> void:
   set_state("client_view", ClientConstants.CLIENT_VIEW_NONE)
-  set_state("game", GameConstants.GAME_STARTING)
   set_state("tower_selection", null)
   set_state("tower_building_selection", null)
   set_state("money", 100)
   set_state("wave", 0)
+  set_state("health", 10)
+  set_state("game", GameConstants.GAME_STARTING)
 
 func save_persistent_store() -> void:
   if ResourceSaver.save(ClientConstants.CLIENT_PERSISTENT_STORE_PATH, persistent_store) != OK:
@@ -36,6 +38,7 @@ func _initialize():
   set_state("tower_building_selection", null)
   set_state("money", 100)
   set_state("wave", 0)
+  set_state("health", 0)
 
 func _ready():
   if Directory.new().file_exists(ClientConstants.CLIENT_PERSISTENT_STORE_PATH):
