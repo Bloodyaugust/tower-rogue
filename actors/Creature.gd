@@ -29,6 +29,7 @@ func _on_command_do(command_data:Dictionary) -> void:
 
         if _health <= 0:
           _animation_player.play("die")
+          Store.set_state("money", Store.state.money + data.value)
           targetable = false
         else:
           _animation_player.play("damage")

@@ -1,6 +1,11 @@
 extends Node2D
 
+const SPAWN_INTERVAL:float = 0.5
+
 const _creature_scene:PackedScene = preload("res://actors/Creature.tscn")
+
+var _spawns_left:int = 0
+var _time_to_spawn:float = 0.0
 
 func _spawn_creature(creature_data:Dictionary) -> void:
   var _new_creature:Node2D = _creature_scene.instantiate()
@@ -15,15 +20,9 @@ func _spawn_creature(creature_data:Dictionary) -> void:
     "creature": _new_creature
   })
 
-func _spawn_wave() -> void:
-  var _wave_number:int = Store.state.wave
-  
-  var _spawns_left:int = _wave_number * 5
-  
-  while _spawns_left > 0 && Store.state.game != GameConstants.GAME_OVER:
-    _spawn_creature(Depot.get_line("creatures", "orc"))
-    await get_tree().create_timer(0.5).timeout
-    _spawns_left -= 1
+func _start_wave() -> void:
+  _spawns_left = Store.state.wave * 5
+  Store.set_state("spawning", true)
 
 func _on_command_do(command_data:Dictionary) -> void:
   match command_data.type:
@@ -33,7 +32,19 @@ func _on_command_do(command_data:Dictionary) -> void:
 func _on_store_state_changed(state_key:String, substate) -> void:
   match state_key:
     "wave":
-      _spawn_wave()
+      _start_wave()
+
+func _process(delta):
+  if Store.state.spawning:
+    _time_to_spawn = clampf(_time_to_spawn - delta, 0, SPAWN_INTERVAL)
+
+    if _time_to_spawn == 0 && _spawns_left > 0:
+      _spawn_creature(Depot.get_line("creatures", "orc"))
+      _time_to_spawn = SPAWN_INTERVAL
+      _spawns_left -= 1
+      
+    if _spawns_left == 0:
+      Store.set_state("spawning", false) 
 
 func _ready():
   Store.state_changed.connect(_on_store_state_changed)

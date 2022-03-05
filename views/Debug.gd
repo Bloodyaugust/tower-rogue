@@ -13,6 +13,8 @@ func _on_store_state_changed(state_key:String, substate) -> void:
   match state_key:
     "debug":
       visible = substate
+    "spawning":
+      _next_wave.disabled = substate
 
 func _ready() -> void:
   Store.state_changed.connect(_on_store_state_changed)

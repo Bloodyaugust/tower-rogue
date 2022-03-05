@@ -11,7 +11,8 @@ var state: Dictionary = {
   "tower_building_selection": null,
   "money": 0,
   "wave": 0,
-  "health": 0
+  "health": 0,
+  "spawning": false
  }
 
 func start_game() -> void:

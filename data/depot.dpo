@@ -422,6 +422,23 @@
                         "max": "float",
                         "defaultValue": "float"
                     }
+                },
+                {
+                    "typeStr": "int",
+                    "guid": "6ba13a3c-5ccd-4509-8b29-a345786b431b",
+                    "description": "How much gold is given to the player when this creature is killed",
+                    "name": "value",
+                    "min": 1,
+                    "max": 100000,
+                    "defaultValue": 1,
+                    "iconName": "newInt",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text",
+                        "min": "int",
+                        "max": "int",
+                        "defaultValue": "int"
+                    }
                 }
             ],
             "lines": [
@@ -430,7 +447,8 @@
                     "id": "orc",
                     "health": 2,
                     "armor": 0,
-                    "move-speed": 100
+                    "move-speed": 100,
+                    "value": 1
                 }
             ],
             "hidden": false,
