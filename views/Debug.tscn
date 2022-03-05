@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdk8tq313q34w"]
+
+[ext_resource type="Theme" uid="uid://b15qjmc8yvspv" path="res://resources/themes/kenney/kenney.tres" id="1_s2v3b"]
+[ext_resource type="Script" path="res://views/Debug.gd" id="2_unqov"]
+
+[node name="DebugCanvasLayer" type="CanvasLayer"]
+layer = 2
+
+[node name="Debug" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( "1_s2v3b" )
+script = ExtResource( "2_unqov" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Debug"]
+offset_right = 40.0
+offset_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextWave" type="Button" parent="Debug/HBoxContainer"]
+offset_right = 126.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 22
+text = "Start Next Wave"

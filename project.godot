@@ -36,6 +36,7 @@ GameConstants="*res://constants/GameConstants.gd"
 PlayerController="*res://scripts/controllers/PlayerController.gd"
 TowerController="*res://scripts/controllers/TowerController.gd"
 SpawnController="*res://scripts/controllers/SpawnController.gd"
+DebugView="*res://views/Debug.tscn"
 
 [display]
 
