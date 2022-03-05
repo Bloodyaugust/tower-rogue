@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://3n3xbfd35kde"]
+[gd_scene load_steps=8 format=3 uid="uid://3n3xbfd35kde"]
 
 [ext_resource type="Texture2D" uid="uid://csssy4reyqoa4" path="res://sprites/tiles/grass.png" id="1_7g25l"]
 [ext_resource type="Texture2D" uid="uid://cam5us5pumgqb" path="res://sprites/tiles/dirt.png" id="2_3s6on"]
+[ext_resource type="Script" path="res://actors/TDMap.gd" id="3_b66gh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8yod"]
 texture = ExtResource( "2_3s6on" )
@@ -26,7 +27,7 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -128, -77, 0, 0, 0, 0, -35, -20, 0, 0, 0, 0, 29, -55, 0, 0, 0, 0, 98, -20, 0, 0, 0, 0, 33, 20, 0, 0, 0, 0, 64, 36, 0, 0, 0, 0, -1, 78, 0, 0, 0, 0, -62, 38, 0, 0, 0, 0, -129, 77)
 }
 
-[node name="TileMap" type="TileMap"]
+[node name="TDMap" type="TileMap"]
 y_sort_enabled = true
 tile_set = SubResource( "TileSet_5go8p" )
 format = 2
@@ -40,6 +41,7 @@ layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(-262147, 5, 0, 262141, 5, 0, -196610, 5, 0, -131074, 5, 0, 131070, 5, 0, 196606, 5, 0, -131073, 5, 0, -65537, 5, 0, 196607, 5, 0, 262143, 5, 0, -262144, 5, 0, -196608, 5, 0, -65536, 5, 0, 0, 5, 0, 65536, 5, 0, 131072, 5, 0, -131071, 5, 0)
+script = ExtResource( "3_b66gh" )
 
 [node name="Path2D" type="Path2D" parent="."]
 top_level = true

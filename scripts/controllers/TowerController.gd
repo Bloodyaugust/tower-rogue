@@ -1,5 +1,7 @@
 extends Node2D
 
+const TOWER_SPRITE_OFFSET:Vector2 = Vector2(0.0, -9.75)
+
 const _tower_scene:PackedScene = preload("res://actors/Tower.tscn")
 const _building_preview_scene:PackedScene = preload("res://doodads/BuildingPlacementPreview.tscn")
 const _building_allowed_modulate:Color = Color(1.0, 1.0, 1.0, 0.2)
@@ -12,6 +14,9 @@ var _tile_map:TileMap
 
 func _can_build_tower() -> bool:
   if Store.state.money < Store.state.tower_building_selection.cost:
+    return false
+    
+  if !_tile_map.is_tile_buildable(get_global_mouse_position()):
     return false
 
   var _space = get_world_2d().direct_space_state
@@ -59,7 +64,7 @@ func _on_store_state_changed(state_key:String, substate) -> void:
 
 func _process(delta):
   if Store.state.tower_building_selection:
-    _building_preview.global_position = GDUtil.tilemap_global_cell_position(_tile_map, get_global_mouse_position())
+    _building_preview.global_position = GDUtil.tilemap_global_cell_position(_tile_map, get_global_mouse_position()) + TOWER_SPRITE_OFFSET
 
     if _can_build_tower():
       _building_preview.modulate = _building_allowed_modulate
