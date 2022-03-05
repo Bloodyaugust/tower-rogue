@@ -61,6 +61,11 @@ func _on_store_state_changed(state_key:String, substate) -> void:
         _building_preview.texture = load("res://sprites/towers/" + substate.id + ".png")
       else:
         _building_preview.visible = false
+    "game":
+      match substate:
+        GameConstants.GAME_OVER:
+          for _tower in get_tree().get_nodes_in_group("towers"):
+            _tower.queue_free()
 
 func _process(delta):
   if Store.state.tower_building_selection:

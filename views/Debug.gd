@@ -7,7 +7,7 @@ func _on_next_wave_pressed() -> void:
   Store.set_state("wave", Store.state.wave + 1)
 
 func _on_start_game_pressed() -> void:
-  Store.set_state("game", GameConstants.GAME_IN_PROGRESS)
+  Store.start_game()
 
 func _on_store_state_changed(state_key:String, substate) -> void:
   match state_key:
@@ -15,6 +15,14 @@ func _on_store_state_changed(state_key:String, substate) -> void:
       visible = substate
     "spawning":
       _next_wave.disabled = substate
+    "game":
+      match substate:
+        GameConstants.GAME_IN_PROGRESS:
+          _start_game.disabled = true
+          _next_wave.disabled = false
+        GameConstants.GAME_OVER:
+          _next_wave.disabled = true
+          _start_game.disabled = false
 
 func _ready() -> void:
   Store.state_changed.connect(_on_store_state_changed)

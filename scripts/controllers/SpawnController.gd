@@ -21,7 +21,8 @@ func _spawn_creature(creature_data:Dictionary) -> void:
   })
 
 func _start_wave() -> void:
-  _spawns_left = Store.state.wave * 5
+  _spawns_left = int(get_tree().get_nodes_in_group("tdmaps")[0].get_difficulty())
+  _time_to_spawn = 0.0
   Store.set_state("spawning", true)
 
 func _on_command_do(command_data:Dictionary) -> void:
@@ -32,7 +33,14 @@ func _on_command_do(command_data:Dictionary) -> void:
 func _on_store_state_changed(state_key:String, substate) -> void:
   match state_key:
     "wave":
-      _start_wave()
+      if Store.state.game == GameConstants.GAME_IN_PROGRESS:
+        _start_wave()
+    "game":
+      match substate:
+        GameConstants.GAME_OVER:
+          Store.set_state("spawning", false)
+          for _creature in get_tree().get_nodes_in_group("creatures"):
+            _creature.queue_free()
 
 func _process(delta):
   if Store.state.spawning:
