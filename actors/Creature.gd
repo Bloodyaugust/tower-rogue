@@ -40,6 +40,12 @@ func _process(delta):
   if targetable:
     _distance += delta * data["move-speed"]
     path.offset = _distance
+    
+    if global_position.x > path.global_position.x:
+      _sprite.flip_h = true
+    else:
+      _sprite.flip_h = false
+    
     global_position = path.global_position
 
     if path.unit_offset == 1.0:
