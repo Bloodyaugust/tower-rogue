@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c11u08iff3mdu"]
+[gd_scene load_steps=6 format=3 uid="uid://c11u08iff3mdu"]
 
 [ext_resource type="Script" path="res://actors/Tower.gd" id="1_scjuu"]
 [ext_resource type="Texture2D" uid="uid://bq6ar23pvsfkr" path="res://sprites/towers/arrow.png" id="2_ciipb"]
+[ext_resource type="Texture2D" uid="uid://bpiynfduyppda" path="res://sprites/range_circle.png" id="2_jvtnn"]
 [ext_resource type="Theme" uid="uid://b15qjmc8yvspv" path="res://resources/themes/kenney/kenney.tres" id="3_prmdl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uyo1e"]
@@ -11,6 +12,10 @@ size = Vector2(36, 45)
 z_index = 1
 z_as_relative = false
 script = ExtResource( "1_scjuu" )
+
+[node name="RangeIndicator" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource( "2_jvtnn" )
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -9.75)
