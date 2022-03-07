@@ -7,7 +7,8 @@ var data:Dictionary
 var path:PathFollow2D
 
 @onready var _name:Label = find_node("Name")
-@onready var _animation_player = find_node("AnimationPlayer")
+@onready var _animation_player:AnimationPlayer = find_node("AnimationPlayer")
+@onready var _walk_animation:AnimationPlayer = find_node("WalkAnimator")
 @onready var _sprite:Sprite2D = find_node("Sprite2D")
 
 @onready var _health:float = data.health
@@ -29,6 +30,7 @@ func _on_command_do(command_data:Dictionary) -> void:
 
         if _health <= 0:
           _animation_player.play("die")
+          _walk_animation.stop()
           Store.set_state("money", Store.state.money + data.value)
           targetable = false
         else:
@@ -42,6 +44,7 @@ func _process(delta):
 
     if path.unit_offset == 1.0:
       _animation_player.play("die")
+      _walk_animation.stop()
       targetable = false
       Store.set_state("health", Store.state.health - 1)
 
@@ -54,3 +57,6 @@ func _ready():
   
   if _directory.file_exists(_texture_path):
     _sprite.texture = load("res://sprites/creatures/" + data.id + ".png")
+    
+  _walk_animation.play("walk", -1, randf_range(0.85, 1.15))
+  _walk_animation.seek(randf_range(0.0, 0.25), true)
