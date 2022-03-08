@@ -4,7 +4,9 @@ const SPAWN_INTERVAL:float = 0.5
 
 const _creature_scene:PackedScene = preload("res://actors/Creature.tscn")
 
-var _spawns_left:int = 0
+@onready var _creature_lines = Depot.get_lines("creatures")
+
+var _spawns:Array = []
 var _time_to_spawn:float = 0.0
 
 func _spawn_creature(creature_data:Dictionary) -> void:
@@ -21,7 +23,18 @@ func _spawn_creature(creature_data:Dictionary) -> void:
   })
 
 func _start_wave() -> void:
-  _spawns_left = int(get_tree().get_nodes_in_group("tdmaps")[0].get_difficulty())
+  var _wave_difficulty = get_tree().get_nodes_in_group("tdmaps")[0].get_difficulty()
+  var _wave_value:int = int(_wave_difficulty * 2)
+  var _current_value:int = _wave_value
+  
+  while _current_value > 0:
+    var _picked_creature = _creature_lines[randi() % _creature_lines.size()]
+    var _picked_value = int(_picked_creature.value)
+    
+    if _picked_value <= _current_value:
+      _spawns.append(_picked_creature)
+      _current_value -= _picked_value
+
   _time_to_spawn = 0.0
   Store.set_state("spawning", true)
 
@@ -46,12 +59,11 @@ func _process(delta):
   if Store.state.spawning:
     _time_to_spawn = clampf(_time_to_spawn - delta, 0, SPAWN_INTERVAL)
 
-    if _time_to_spawn == 0 && _spawns_left > 0:
-      _spawn_creature(Depot.get_line("creatures", "orc"))
+    if _time_to_spawn == 0 && _spawns.size() > 0:
+      _spawn_creature(_spawns.pop_back())
       _time_to_spawn = SPAWN_INTERVAL
-      _spawns_left -= 1
       
-    if _spawns_left == 0:
+    if _spawns.size() == 0:
       Store.set_state("spawning", false) 
 
 func _ready():

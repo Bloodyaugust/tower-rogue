@@ -449,6 +449,14 @@
                     "armor": 0,
                     "move-speed": 100,
                     "value": 1
+                },
+                {
+                    "guid": "f9578df8-8920-452a-9576-a20bc5e1a1af",
+                    "id": "ogre",
+                    "health": 5,
+                    "armor": 1,
+                    "move-speed": 50,
+                    "value": 4
                 }
             ],
             "hidden": false,
