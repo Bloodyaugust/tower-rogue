@@ -45,8 +45,8 @@ func _update_modulate() -> void:
 
 func _on_tower_mouse_entered():
   var _tween:Tween = create_tween()
-  _tween.tween_property(self, "rect_position", Vector2(0.0, rect_position.y), 0.25)
+  _tween.tween_property(self, "rect_position", Vector2(0.0, rect_position.y), 0.15)
 
 func _on_tower_mouse_exited():
   var _tween:Tween = create_tween()
-  _tween.tween_property(self, "rect_position", Vector2(-100.0, rect_position.y), 0.25)
+  _tween.tween_property(self, "rect_position", Vector2(-100.0, rect_position.y), 0.15)

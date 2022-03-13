@@ -1,0 +1,115 @@
+[gd_scene load_steps=4 format=3 uid="uid://blbqah3b66cws"]
+
+[ext_resource type="Theme" uid="uid://b15qjmc8yvspv" path="res://resources/themes/kenney/kenney.tres" id="1_8wapn"]
+[ext_resource type="Script" path="res://views/Details.gd" id="2_b2k7a"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_kfnel"]
+color = Color(1, 1, 1, 1)
+
+[node name="Details" type="PanelContainer"]
+anchor_left = 1.0
+anchor_top = 0.11
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -534.0
+grow_horizontal = 0
+rect_min_size = Vector2(200, 534)
+theme = ExtResource( "1_8wapn" )
+script = ExtResource( "2_b2k7a" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 190.0
+offset_bottom = 524.0
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+offset_right = 180.0
+offset_bottom = 399.0
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="ScrollContainer/VBoxContainer"]
+offset_right = 180.0
+offset_bottom = 30.0
+size_flags_horizontal = 3
+text = "this-is a long-tower-name"
+
+[node name="Description" type="Label" parent="ScrollContainer/VBoxContainer"]
+offset_top = 40.0
+offset_right = 180.0
+offset_bottom = 135.0
+size_flags_horizontal = 3
+text = "A tower that fuckin' slaps, my guy. Like, you don't even know. 
+
+Holy shit, a newline!"
+autowrap_mode = 3
+
+[node name="DPS" type="Label" parent="ScrollContainer/VBoxContainer"]
+offset_top = 145.0
+offset_right = 180.0
+offset_bottom = 175.0
+size_flags_horizontal = 3
+text = "DPS: 12 (1 * 0.5/sec)"
+autowrap_mode = 3
+
+[node name="Crit" type="Label" parent="ScrollContainer/VBoxContainer"]
+offset_top = 185.0
+offset_right = 180.0
+offset_bottom = 215.0
+size_flags_horizontal = 3
+text = "Crit: 50%, 1.2x"
+autowrap_mode = 3
+
+[node name="AOE" type="Label" parent="ScrollContainer/VBoxContainer"]
+offset_top = 225.0
+offset_right = 180.0
+offset_bottom = 255.0
+size_flags_horizontal = 3
+text = "AOE: 5"
+autowrap_mode = 3
+
+[node name="Range" type="Label" parent="ScrollContainer/VBoxContainer"]
+offset_top = 265.0
+offset_right = 180.0
+offset_bottom = 295.0
+size_flags_horizontal = 3
+text = "Range: 50"
+autowrap_mode = 3
+
+[node name="Effects" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+offset_top = 305.0
+offset_right = 180.0
+offset_bottom = 335.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Effects"]
+offset_right = 180.0
+offset_bottom = 30.0
+size_flags_horizontal = 3
+text = "Poison: 1/sec"
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+offset_top = 345.0
+offset_right = 180.0
+offset_bottom = 349.0
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource( "StyleBoxLine_kfnel" )
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+offset_top = 359.0
+offset_right = 180.0
+offset_bottom = 389.0
+size_flags_horizontal = 3
+text = "Upgrades"
+horizontal_alignment = 1
+
+[node name="Upgrades" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+offset_top = 399.0
+offset_right = 180.0
+offset_bottom = 399.0
+size_flags_horizontal = 3

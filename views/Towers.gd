@@ -10,18 +10,7 @@ func _hide_towers() -> void:
   for _tower in _tower_list.get_children():
     _tower.rect_position = Vector2(-100.0, _tower.rect_position.y)
 
-func _on_store_state_changed(state_key:String, substate) -> void:
-  match state_key:
-    "tower_selection":
-      match substate:
-        null:
-          visible = true
-        _:
-          visible = false
-
 func _ready():
-  Store.state_changed.connect(_on_store_state_changed)
-  
   for _tower in _towers:
     var _new_tower_component:Control = _tower_component.instantiate()
     

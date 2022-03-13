@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4riq2dxsg7e7"]
+[gd_scene load_steps=6 format=3 uid="uid://b4riq2dxsg7e7"]
 
 [ext_resource type="PackedScene" uid="uid://ce0popxtac3k3" path="res://views/Towers.tscn" id="1_xcx6m"]
 [ext_resource type="PackedScene" uid="uid://30eceicf2nlo" path="res://views/Status.tscn" id="2_gumwp"]
+[ext_resource type="PackedScene" uid="uid://blbqah3b66cws" path="res://views/Details.tscn" id="3_1p8nr"]
 [ext_resource type="PackedScene" path="res://lib/BetterCam.tscn" id="4_wx7y8"]
 
 [sub_resource type="GDScript" id="GDScript_wumu2"]
@@ -20,6 +21,8 @@ script = SubResource( "GDScript_wumu2" )
 [node name="Towers" parent="UIRoot" instance=ExtResource( "1_xcx6m" )]
 
 [node name="Status" parent="UIRoot" instance=ExtResource( "2_gumwp" )]
+
+[node name="Details" parent="UIRoot" instance=ExtResource( "3_1p8nr" )]
 
 [node name="BetterCam" parent="." instance=ExtResource( "4_wx7y8" )]
 zoom = Vector2(0.5, 0.5)
