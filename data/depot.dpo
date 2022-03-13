@@ -170,7 +170,7 @@
                     "crit-chance": 0.1,
                     "crit-multiplier": 1.1,
                     "status-effects": [],
-                    "range": 50
+                    "range": 1000
                 },
                 {
                     "guid": "d5d2dfb0-a7ef-4b0e-92fc-f4f41a169c79",
@@ -422,23 +422,6 @@
                         "max": "float",
                         "defaultValue": "float"
                     }
-                },
-                {
-                    "typeStr": "int",
-                    "guid": "6ba13a3c-5ccd-4509-8b29-a345786b431b",
-                    "description": "How much gold is given to the player when this creature is killed",
-                    "name": "value",
-                    "min": 1,
-                    "max": 100000,
-                    "defaultValue": 1,
-                    "iconName": "newInt",
-                    "configurable": {
-                        "name": "text",
-                        "description": "text",
-                        "min": "int",
-                        "max": "int",
-                        "defaultValue": "int"
-                    }
                 }
             ],
             "lines": [
@@ -447,16 +430,7 @@
                     "id": "orc",
                     "health": 2,
                     "armor": 0,
-                    "move-speed": 100,
-                    "value": 1
-                },
-                {
-                    "guid": "f9578df8-8920-452a-9576-a20bc5e1a1af",
-                    "id": "ogre",
-                    "health": 5,
-                    "armor": 1,
-                    "move-speed": 50,
-                    "value": 4
+                    "move-speed": 100
                 }
             ],
             "hidden": false,

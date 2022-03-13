@@ -7,7 +7,7 @@
 [ext_resource type="Font" uid="uid://cihrohhvctaj1" path="res://resources/fonts/kenney_pixel.tres" id="5"]
 [ext_resource type="Texture2D" uid="uid://wkqgqqjw5u6" path="res://resources/themes/kenney/9-Slice/space.png" id="6_sttfw"]
 
-[sub_resource type="StyleBoxTexture" id="1"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ei1om"]
 texture = ExtResource( "1" )
 region_rect = Rect2(0, 0, 44, 44)
 margin_left = 9.46675
@@ -15,7 +15,7 @@ margin_right = 10.729
 margin_top = 8.20452
 margin_bottom = 5.83783
 
-[sub_resource type="StyleBoxTexture" id="2"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ywn2"]
 texture = ExtResource( "1" )
 region_rect = Rect2(0, 0, 44, 44)
 margin_left = 9.94009
@@ -23,7 +23,7 @@ margin_right = 8.04674
 margin_top = 8.67786
 margin_bottom = 8.52008
 
-[sub_resource type="StyleBoxTexture" id="3"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mwac2"]
 texture = ExtResource( "2" )
 region_rect = Rect2(0, 0, 48, 48)
 margin_left = 7.86711
@@ -31,7 +31,7 @@ margin_right = 9.26571
 margin_top = 13.1118
 margin_bottom = 9.61535
 
-[sub_resource type="StyleBoxTexture" id="4"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sex5w"]
 texture = ExtResource( "3" )
 region_rect = Rect2(0, 0, 48, 48)
 margin_left = 7.79429
@@ -39,7 +39,7 @@ margin_right = 8.84353
 margin_top = 8.39386
 margin_bottom = 10.3424
 
-[sub_resource type="StyleBoxTexture" id="5"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jths3"]
 texture = ExtResource( "2" )
 region_rect = Rect2(0, 0, 48, 48)
 margin_left = 11.8188
@@ -47,7 +47,7 @@ margin_right = 12.6732
 margin_top = 10.5373
 margin_bottom = 9.9677
 
-[sub_resource type="StyleBoxTexture" id="6"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o3lu3"]
 texture = ExtResource( "4" )
 region_rect = Rect2(0, 0, 44, 44)
 margin_left = 10.5712
@@ -55,7 +55,7 @@ margin_right = 11.0445
 margin_top = 10.729
 margin_bottom = 11.2023
 
-[sub_resource type="StyleBoxTexture" id="7"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_paxqj"]
 texture = ExtResource( "4" )
 region_rect = Rect2(0, 0, 44, 44)
 margin_left = 9.94009
@@ -63,7 +63,7 @@ margin_right = 10.729
 margin_top = 11.0445
 margin_bottom = 11.2023
 
-[sub_resource type="StyleBoxTexture" id="8"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qyt2h"]
 texture = ExtResource( "4" )
 region_rect = Rect2(0, 0, 44, 44)
 margin_left = 12.3068
@@ -71,7 +71,7 @@ margin_right = 11.2023
 margin_top = 11.2023
 margin_bottom = 10.8868
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mkd7r"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cy47j"]
 texture = ExtResource( "6_sttfw" )
 region_rect = Rect2(0, 0, 48, 48)
 margin_left = 10.0
@@ -88,17 +88,17 @@ Button/colors/font_color_pressed = Color(1, 1, 1, 1)
 Button/constants/hseparation = 2
 Button/font_sizes/font_size = 16
 Button/fonts/font = ExtResource( "5" )
-Button/styles/disabled = SubResource( "1" )
-Button/styles/focus = SubResource( "2" )
-Button/styles/hover = SubResource( "3" )
-Button/styles/normal = SubResource( "4" )
-Button/styles/pressed = SubResource( "5" )
+Button/styles/disabled = SubResource( "StyleBoxTexture_ei1om" )
+Button/styles/focus = SubResource( "StyleBoxTexture_0ywn2" )
+Button/styles/hover = SubResource( "StyleBoxTexture_mwac2" )
+Button/styles/normal = SubResource( "StyleBoxTexture_sex5w" )
+Button/styles/pressed = SubResource( "StyleBoxTexture_jths3" )
 HBoxContainer/constants/separation = 10
 Label/font_sizes/font_size = 20
 Label/fonts/font = ExtResource( "5" )
 Panel/font_sizes/font_size = 24
-Panel/styles/panel = SubResource( "6" )
-Panel/styles/panelf = SubResource( "7" )
-Panel/styles/panelnc = SubResource( "8" )
-PanelContainer/styles/panel = SubResource( "StyleBoxTexture_mkd7r" )
+Panel/styles/panel = SubResource( "StyleBoxTexture_o3lu3" )
+Panel/styles/panelf = SubResource( "StyleBoxTexture_paxqj" )
+Panel/styles/panelnc = SubResource( "StyleBoxTexture_qyt2h" )
+PanelContainer/styles/panel = SubResource( "StyleBoxTexture_cy47j" )
 VBoxContainer/constants/separation = 10
