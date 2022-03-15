@@ -37,14 +37,17 @@ func _on_command_do(command_data:Dictionary) -> void:
       if command_data.attacker == self:
         _time_to_attack = data["attack-speed"]
 
+func _on_selected() -> void:
+  modulate = SELECTED_MODULATE
+  _range_indicator.visible = true
+
 func _on_store_state_changed(state_key:String, substate) -> void:
   match state_key:
     "debug":
       update()
     "tower_selection":
       if self == substate:
-        modulate = SELECTED_MODULATE
-        _range_indicator.visible = true
+        _on_selected()
       else:
         modulate = IDLE_MODULATE
         _range_indicator.visible = false
@@ -80,5 +83,8 @@ func _ready():
     
   var _range_scale = RANGE_INDICATOR_SCALAR * data.range
   _range_indicator.scale = Vector2(_range_scale, _range_scale)
+  
+  if Store.state.tower_selection == self:
+    _on_selected()
   
   update()

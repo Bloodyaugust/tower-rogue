@@ -96,6 +96,10 @@ func _unhandled_input(event):
         var _new_tower = _tower_scene.instantiate()
         _new_tower.global_position = GDUtil.tilemap_global_cell_position(_tile_map, get_global_mouse_position())
         _new_tower.data = Store.state.tower_building_selection
+        
+        if !Input.is_key_pressed(KEY_SHIFT):
+          Store.set_state("tower_building_selection", null)
+          Store.set_state("tower_selection", _new_tower)
 
         CommandQueue.add_command({
           "type": CommandQueue.COMMAND_TYPES.BUILD_TOWER,
