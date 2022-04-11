@@ -439,24 +439,81 @@
                         "max": "int",
                         "defaultValue": "int"
                     }
+                },
+                {
+                    "typeStr": "list",
+                    "guid": "bebae546-3e39-448b-8c00-d9f4e9eaa382",
+                    "name": "sprites",
+                    "description": "sprites for walk animation",
+                    "sheet": "2dd9bece-c4ad-4889-baf9-79ea2ca1d431",
+                    "defaultValue": [],
+                    "iconName": "newList",
+                    "configurable": {
+                        "name": "text",
+                        "description": "text"
+                    }
                 }
             ],
             "lines": [
                 {
                     "guid": "8bce53d6-a9c6-4710-83a8-d234b5e20275",
                     "id": "orc",
-                    "health": 2,
-                    "armor": 0,
+                    "health": 4,
+                    "armor": 1,
                     "move-speed": 100,
-                    "value": 1
+                    "value": 4,
+                    "sprites": [
+                        {
+                            "guid": "f138ece4-22d8-4dab-b45a-e50a4643c0c9",
+                            "id": "res://sprites/creatures/orc.png"
+                        }
+                    ]
                 },
                 {
                     "guid": "f9578df8-8920-452a-9576-a20bc5e1a1af",
                     "id": "ogre",
-                    "health": 5,
-                    "armor": 1,
+                    "health": 8,
+                    "armor": 2,
                     "move-speed": 50,
-                    "value": 4
+                    "value": 10,
+                    "sprites": [
+                        {
+                            "guid": "efc81955-930b-4d42-8e98-3b04c3ce5a78",
+                            "id": "res://sprites/creatures/ogre-1.png"
+                        },
+                        {
+                            "guid": "61b21187-e470-4344-91ca-b80092a2d43b",
+                            "id": "res://sprites/creatures/ogre-2.png"
+                        }
+                    ]
+                },
+                {
+                    "guid": "02d1a1a5-ff86-441b-a2ed-cf0f8ef9c8c5",
+                    "id": "hobgoblin",
+                    "health": 3,
+                    "armor": 0,
+                    "move-speed": 125,
+                    "value": 2.5,
+                    "sprites": [
+                        {
+                            "guid": "611954f1-5670-489d-92ad-ca88f8be93e7",
+                            "id": "res://sprites/creatures/hobgoblin.png"
+                        }
+                    ]
+                },
+                {
+                    "guid": "f753361c-fe92-4ee3-a2d0-70ccf338ef34",
+                    "id": "goblin",
+                    "health": 2,
+                    "armor": 0,
+                    "move-speed": 75,
+                    "value": 1,
+                    "sprites": [
+                        {
+                            "guid": "003d2363-0479-40b0-84ba-c76193194446",
+                            "id": "res://sprites/creatures/goblin.png"
+                        }
+                    ]
                 }
             ],
             "hidden": false,
@@ -474,6 +531,18 @@
                     ]
                 }
             }
+        },
+        {
+            "name": "sprites",
+            "description": "list@6bff5a18-e975-494b-80b9-08c67057b7af",
+            "displayColumn": "id",
+            "guid": "2dd9bece-c4ad-4889-baf9-79ea2ca1d431",
+            "columns": [],
+            "lines": [],
+            "hidden": true,
+            "isProps": false,
+            "parentSheetGUID": "6bff5a18-e975-494b-80b9-08c67057b7af",
+            "columnGUID": "bebae546-3e39-448b-8c00-d9f4e9eaa382"
         }
     ]
 }

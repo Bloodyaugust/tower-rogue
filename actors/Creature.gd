@@ -1,6 +1,7 @@
 extends Node2D
 
 const _hit_effect_scene:PackedScene = preload("res://doodads/HitEffect.tscn")
+const WALK_ANIMATION_LENGTH:float = 0.5
 
 var targetable:bool = true
 var data:Dictionary
@@ -14,6 +15,10 @@ var path:PathFollow2D
 @onready var _health:float = data.health
 
 var _distance:float = 0.0
+var _time_to_change_walk_sprite:float = 0.0
+var _walk_sprites:Array = []
+var _walk_sprite_index:int = 0
+var _walk_sprite_interval:float = 0.0
 
 func _die_complete() -> void:
   queue_free()
@@ -38,8 +43,16 @@ func _on_command_do(command_data:Dictionary) -> void:
 
 func _process(delta):
   if targetable:
+    _time_to_change_walk_sprite -= delta
     _distance += delta * data["move-speed"]
     path.offset = _distance
+    
+    if _time_to_change_walk_sprite <= 0:
+      _walk_sprite_index += 1
+      if _walk_sprite_index >= _walk_sprites.size():
+        _walk_sprite_index = 0
+      _time_to_change_walk_sprite = _walk_sprite_interval
+      _sprite.texture = _walk_sprites[_walk_sprite_index]
     
     if global_position.x > path.global_position.x:
       _sprite.flip_h = true
@@ -58,11 +71,11 @@ func _ready():
   CommandQueue.command_do.connect(_on_command_do)
   _name.text = data.id
   
-  var _directory:Directory = Directory.new()
-  var _texture_path:String = "res://sprites/creatures/" + data.id + ".png"
-  
-  if _directory.file_exists(_texture_path):
-    _sprite.texture = load("res://sprites/creatures/" + data.id + ".png")
+  for _path in data.sprites:
+    _walk_sprites.append(GDUtil.load_texture_or_icon(_path.id))
     
+  _sprite.texture = _walk_sprites[0]
   _walk_animation.play("walk", -1, randf_range(0.85, 1.15))
   _walk_animation.seek(randf_range(0.0, 0.25), true)
+  _walk_sprite_interval = WALK_ANIMATION_LENGTH / _walk_sprites.size()
+  _time_to_change_walk_sprite = _walk_sprite_interval

@@ -30,7 +30,7 @@ func _start_wave() -> void:
   while _current_value > 0:
     var _picked_creature = _creature_lines[randi() % _creature_lines.size()]
     var _picked_value = int(_picked_creature.value)
-    
+
     if _picked_value <= _current_value:
       _spawns.append(_picked_creature)
       _current_value -= _picked_value

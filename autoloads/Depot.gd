@@ -56,7 +56,7 @@ func _init():
         _line[_line_reference] = guid_hash[_line[_line_reference]]
 
     # Parse sheets that define a `parentSheetGUID` which are list definitions to replace references with full object
-    if _sheet.has("parentSheetGUID"):
+    if _sheet.has("parentSheetGUID") && !_sheet.size():
       var _entry_replace_key = _sheet.columns[0].name
       var _parent_sheet = sheets[_sheet.parentSheetGUID]
       var _parent_sheet_column_name
