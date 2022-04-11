@@ -1,5 +1,6 @@
 extends Node
 
+signal generate_overworld()
 signal state_changed(state_key, substate)
 
 var persistent_store:PersistentStore

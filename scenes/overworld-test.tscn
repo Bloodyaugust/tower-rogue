@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://1x6kkfu44d8b"]
+
+[ext_resource type="PackedScene" uid="uid://crf4ooacni1db" path="res://actors/Overworld.tscn" id="1_3o1k3"]
+[ext_resource type="PackedScene" path="res://lib/BetterCam.tscn" id="1_6mska"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BetterCam" parent="." instance=ExtResource( "1_6mska" )]
+
+[node name="Overworld" parent="." instance=ExtResource( "1_3o1k3" )]
