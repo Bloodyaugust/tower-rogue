@@ -29,6 +29,14 @@ static func free_children(node):
   for n in node.get_children():
       n.free()
 
+static func load_texture_or_icon(path:String) -> Texture:
+  var _directory:Directory = Directory.new()
+  
+  if _directory.file_exists(path):
+    return load(path)
+    
+  return load("res://icon.png")
+
 static func queue_free_children(node):
   for n in node.get_children():
       n.queue_free()

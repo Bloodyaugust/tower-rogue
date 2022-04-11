@@ -58,7 +58,7 @@ func _on_store_state_changed(state_key:String, substate) -> void:
     "tower_building_selection":
       if substate:
         _building_preview.visible = true
-        _building_preview.texture = load("res://sprites/towers/" + substate.id + ".png")
+        _building_preview.texture = GDUtil.load_texture_or_icon("res://sprites/towers/" + substate.id + ".png")
       else:
         _building_preview.visible = false
     "game":
